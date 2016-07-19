@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function, unicode_literals, division, absolute_import
-import os
+from os import path
 import logging
 from collections import OrderedDict
 from bs4 import BeautifulSoup
@@ -17,8 +17,8 @@ class EEP(object):
         self.telegrams = {}
 
         try:
-            with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'EEP.xml'), 'r') as xml_file:
-                self.soup = BeautifulSoup(xml_file.read(), "html.parser")
+            with open(path.join(path.dirname(path.realpath(__file__)), 'EEP.xml'), 'r',  encoding='utf-8') as xml_file:
+                self.soup = BeautifulSoup(xml_file, "html.parser")
             self.init_ok = True
             self.__load_xml()
         except IOError:
